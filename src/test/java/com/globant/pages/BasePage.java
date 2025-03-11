@@ -10,4 +10,8 @@ public class BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    public WebDriver getDriver() {
+        return this.driver;
+    }
 }
