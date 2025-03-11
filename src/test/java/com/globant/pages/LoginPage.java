@@ -18,10 +18,29 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-button")
     private WebElement btnLogin;
 
+    @FindBy(className = "login_logo")
+    private WebElement lblLoginTitle;
+
     public ProductsPage standardLogin() {
         this.fldUsername.sendKeys("standard_user");
         this.fldPassword.sendKeys("secret_sauce");
         this.btnLogin.click();
         return new ProductsPage(super.getDriver());
+    }
+
+    public WebElement getFldUsername() {
+        return fldUsername;
+    }
+
+    public WebElement getFldPassword() {
+        return fldPassword;
+    }
+
+    public WebElement getBtnLogin() {
+        return btnLogin;
+    }
+
+    public WebElement getLblLoginTitle() {
+        return lblLoginTitle;
     }
 }
