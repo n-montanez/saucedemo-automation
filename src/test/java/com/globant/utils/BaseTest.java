@@ -6,14 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 public class BaseTest {
     protected WebDriver driver;
     protected SoftAssert softAssert;
+
+    protected String baseUrl;
+    protected String productsPath;
+    protected String cartPath;
+    protected String checkoutInfoPath;
+    protected String checkoutOverviewPath;
+    protected String checkoutCompletePath;
 
     private void setupDriver(String browser) {
         if ("firefox".equals(browser)) {
@@ -24,7 +29,8 @@ public class BaseTest {
     }
 
     public void navigateTo(String url) {
-        driver.get(url);
+        if(this.driver != null)
+            driver.get(url);
     }
 
     public LoginPage loadLoginPage() {
@@ -40,6 +46,19 @@ public class BaseTest {
 
         // Go to products page after login
         return loginPage.standardLogin();
+    }
+
+    @Parameters({"baseUrl", "productsPath", "cartPath", "checkoutInfoPath", "checkoutOverviewPath", "checkoutCompletePath"})
+    @BeforeClass
+    public void setUpUrls(
+            String baseUrl, String productsPath, String cartPath,
+            String checkoutInfoPath, String checkoutOverviewPath, String checkoutCompletePath) {
+        this.baseUrl = baseUrl;
+        this.productsPath = productsPath;
+        this.cartPath = cartPath;
+        this.checkoutInfoPath = checkoutInfoPath;
+        this.checkoutOverviewPath = checkoutOverviewPath;
+        this.checkoutCompletePath = checkoutCompletePath;
     }
 
     @BeforeMethod(alwaysRun = true)
