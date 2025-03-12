@@ -17,9 +17,6 @@ public class BaseTest {
         if ("firefox".equals(browser)) {
             this.driver = new FirefoxDriver();
         } else {
-            String path = System.getProperty("user.dir");
-            System.out.println(path);
-            System.setProperty("webdriver.chrome.driver", path + "\\drivers\\chromedriver.exe");
             this.driver = new ChromeDriver();
         }
     }
