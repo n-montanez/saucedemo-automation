@@ -43,4 +43,20 @@ public class CheckoutInfoPage extends BasePage {
         btnCancel.click();
         return new CartPage(driver);
     }
+
+    public WebElement getLblTitle() {
+        return lblTitle;
+    }
+
+    public WebElement getFldFirstName() {
+        return fldFirstName;
+    }
+
+    public WebElement getFldLastName() {
+        return fldLastName;
+    }
+
+    public WebElement getFldPostalCode() {
+        return fldPostalCode;
+    }
 }

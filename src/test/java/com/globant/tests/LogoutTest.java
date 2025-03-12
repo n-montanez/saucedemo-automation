@@ -1,6 +1,7 @@
 package com.globant.tests;
 
 import com.globant.pages.Header;
+import com.globant.pages.LoginPage;
 import com.globant.pages.ProductsPage;
 import com.globant.pages.SidebarMenu;
 import com.globant.utils.BaseTest;

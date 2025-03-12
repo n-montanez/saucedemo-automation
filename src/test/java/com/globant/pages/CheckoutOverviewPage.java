@@ -1,6 +1,7 @@
 package com.globant.pages;
 
 import com.globant.utils.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,6 +40,19 @@ public class CheckoutOverviewPage extends BasePage {
         data.add(Double.parseDouble(lblSubtotal.getText().split("\\$")[1]));
         data.add(Double.parseDouble(lblTaxes.getText().split("\\$")[1]));
         data.add(Double.parseDouble(lblTotal.getText().split("\\$")[1]));
+        return data;
+    }
+
+    public List<Double> getProductsPriceInfo() {
+        List<Double> data = new ArrayList<>();
+        double total = 0;
+        for (WebElement item : cartItems) {
+            String priceLabel = item.findElement(By.cssSelector("[data-test=inventory-item-price]")).getText();
+            double price = Double.parseDouble(priceLabel.split("\\$")[1]);
+            total += price;
+            data.add(price);
+        }
+        data.add(total);
         return data;
     }
 

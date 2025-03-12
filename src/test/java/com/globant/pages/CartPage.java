@@ -40,4 +40,8 @@ public class CartPage extends BasePage {
     public List<WebElement> getCartItems() {
         return cartItems;
     }
+
+    public WebElement getLblTitle() {
+        return lblTitle;
+    }
 }

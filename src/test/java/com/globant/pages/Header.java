@@ -19,6 +19,9 @@ public class Header extends BasePage {
     @FindBy(css = ".shopping_cart_link")
     private WebElement cartButton;
 
+    @FindBy(css = "[data-test=shopping-cart-badge]")
+    private WebElement badgeCart;
+
     public CartPage goToCart() {
         cartButton.click();
         return new CartPage(this.driver);
@@ -27,5 +30,9 @@ public class Header extends BasePage {
     public SidebarMenu openBurgerMenu() {
         btnBurgerMenu.click();
         return new SidebarMenu(driver);
+    }
+
+    public WebElement getBadgeCart() {
+        return badgeCart;
     }
 }
