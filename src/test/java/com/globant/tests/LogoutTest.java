@@ -7,20 +7,24 @@ import com.globant.pages.SidebarMenu;
 import com.globant.utils.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LogoutTest extends BaseTest {
     private ProductsPage productsPage;
 
+    /**
+     * Precondition: Log in and on products page
+     */
     @BeforeMethod
     public void loginUser() {
         productsPage = loginAndGetProductsPage();
     }
 
+    /**
+     * Logs out from the system using burger menu button
+     */
     @Test(testName = "Logout and redirected to login page")
-    @Parameters({"baseUrl", "productsPath"})
-    public void Logout(String baseUrl, String productsPath) {
+    public void Logout() {
         // Assert user is on products page
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + productsPath);
 

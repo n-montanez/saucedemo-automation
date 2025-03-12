@@ -35,19 +35,35 @@ public class CheckoutOverviewPage extends BasePage {
     @FindBy(id = "finish")
     private WebElement btnFinish;
 
+    /**
+     * Creates a list with each receipt price: Products, Taxes & Total
+     *
+     * @return List of doubles
+     */
     public List<Double> getPriceInfo() {
         List<Double> data = new ArrayList<>();
+        /*
+         * Uses regex to separate price label from $0.99 to 0.99 to parse as double
+         */
         data.add(Double.parseDouble(lblSubtotal.getText().split("\\$")[1]));
         data.add(Double.parseDouble(lblTaxes.getText().split("\\$")[1]));
         data.add(Double.parseDouble(lblTotal.getText().split("\\$")[1]));
         return data;
     }
 
+    /**
+     * Creates a list with each cart's product price and their total
+     *
+     * @return List of doubles with each product price. Final position contains the total price
+     */
     public List<Double> getProductsPriceInfo() {
         List<Double> data = new ArrayList<>();
         double total = 0;
         for (WebElement item : cartItems) {
             String priceLabel = item.findElement(By.cssSelector("[data-test=inventory-item-price]")).getText();
+            /*
+             * Uses regex to separate price label from $0.99 to 0.99 to parse as double
+             */
             double price = Double.parseDouble(priceLabel.split("\\$")[1]);
             total += price;
             data.add(price);

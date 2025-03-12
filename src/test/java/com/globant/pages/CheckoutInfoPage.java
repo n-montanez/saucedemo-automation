@@ -28,6 +28,13 @@ public class CheckoutInfoPage extends BasePage {
     @FindBy(id = "cancel")
     private WebElement btnCancel;
 
+    /**
+     * Fills out the checkout information form with given data
+     *
+     * @param firstName user's first name
+     * @param lastName user's last name
+     * @param postalCode user's location postal code
+     */
     public void fillForm(String firstName, String lastName, String postalCode) {
         fldFirstName.sendKeys(firstName);
         fldLastName.sendKeys(lastName);

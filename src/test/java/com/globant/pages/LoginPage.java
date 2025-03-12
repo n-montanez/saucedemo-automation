@@ -22,6 +22,11 @@ public class LoginPage extends BasePage {
     @FindBy(className = "login_logo")
     private WebElement lblLoginTitle;
 
+    /**
+     * Log in with standard user using SauceDemo given data.
+     *
+     * @return products page object model
+     */
     public ProductsPage standardLogin() {
         this.fldUsername.sendKeys("standard_user");
         this.fldPassword.sendKeys("secret_sauce");

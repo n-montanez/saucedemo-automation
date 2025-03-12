@@ -32,6 +32,10 @@ public class CartPage extends BasePage {
 
     public void emptyCart() {
         for (WebElement item : cartItems) {
+            /*
+             * Uses regex to match remove-* button id
+             * This is made since the button id is built based on product's name
+             */
             WebElement btnRemove = item.findElement(By.cssSelector("button[id^=\"remove-\"]"));
             btnRemove.click();
         }

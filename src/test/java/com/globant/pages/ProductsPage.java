@@ -21,16 +21,29 @@ public class ProductsPage extends BasePage {
     @FindBy(css = ".inventory_item")
     private List<WebElement> products;
 
+    /**
+     * Uses the list of present products to randomly select any amount, ensuring no repetitions.
+     *
+     * @param amount amount of products to select
+     * @return list of selected products indexes
+     */
     public List<Integer> selectRandomIndexes(int amount) {
         List<Integer> selected = new ArrayList<>();
         do {
             int random = ThreadLocalRandom.current().nextInt(0, products.size());
+            // Verify for duplicates
             if (!selected.contains(random))
                 selected.add(random);
         } while (selected.size() < amount);
         return selected;
     }
 
+    /**
+     * Selects the given product and navigates to its details page
+     *
+     * @param index position of the product to select and click
+     * @return product detail page object model
+     */
     public SingleProductPage selectProduct(int index) {
         WebElement selectedProduct = this.products.get(index);
         WebElement clickableTitle = selectedProduct.findElement(By.cssSelector("a[id^=\"item\"][id$=\"img_link\"]"));

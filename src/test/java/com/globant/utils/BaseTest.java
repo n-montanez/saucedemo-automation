@@ -20,6 +20,11 @@ public class BaseTest {
     protected String checkoutOverviewPath;
     protected String checkoutCompletePath;
 
+    /**
+     * Sets up selenium browser driver based on given parameter
+     *
+     * @param browser Suite configuration browser
+     */
     private void setupDriver(String browser) {
         if ("firefox".equals(browser)) {
             this.driver = new FirefoxDriver();
@@ -28,6 +33,11 @@ public class BaseTest {
         }
     }
 
+    /**
+     * Sends driver to given url
+     *
+     * @param url base url
+     */
     public void navigateTo(String url) {
         if(this.driver != null)
             driver.get(url);
@@ -37,6 +47,12 @@ public class BaseTest {
         return new LoginPage(this.driver);
     }
 
+    /**
+     * Log in with standard user and goes to products page
+     * Method to be used as a precondition for tests
+     *
+     * @return products page object model
+     */
     public ProductsPage loginAndGetProductsPage() {
         LoginPage loginPage = loadLoginPage();
 
@@ -48,6 +64,17 @@ public class BaseTest {
         return loginPage.standardLogin();
     }
 
+    /**
+     * Initializes url's and paths for further testing
+     * This method is run before each test class
+     *
+     * @param baseUrl suite configuration base url
+     * @param productsPath sauce demo products path
+     * @param cartPath sauce demo cart path
+     * @param checkoutInfoPath sauce demo checkout information path
+     * @param checkoutOverviewPath sauce checkout overview path
+     * @param checkoutCompletePath sauce checkout completed path
+     */
     @Parameters({"baseUrl", "productsPath", "cartPath", "checkoutInfoPath", "checkoutOverviewPath", "checkoutCompletePath"})
     @BeforeClass
     public void setUpUrls(
@@ -61,6 +88,12 @@ public class BaseTest {
         this.checkoutCompletePath = checkoutCompletePath;
     }
 
+    /**
+     * Initializes driver and soft assert elements to share with all test classes
+     *
+     * @param browser suite configuration browser
+     * @param baseUrl suite configuration base url
+     */
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browser", "baseUrl"})
     public void beforeMethod(String browser, String baseUrl) {
@@ -70,6 +103,9 @@ public class BaseTest {
         navigateTo(baseUrl);
     }
 
+    /**
+     * Finishes browser session and closes driver
+     */
     @AfterMethod()
     public void afterMethod() {
         driver.close();

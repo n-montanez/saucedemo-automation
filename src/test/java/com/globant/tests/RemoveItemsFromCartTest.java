@@ -10,11 +10,17 @@ import org.testng.annotations.Test;
 public class RemoveItemsFromCartTest extends BaseTest {
     private ProductsPage productsPage;
 
+    /**
+     * Precondition: Log in and on products page
+     */
     @BeforeMethod
     public void loginUser() {
         productsPage = loginAndGetProductsPage();
     }
 
+    /**
+     * Adds several products to the cart and then removes them
+     */
     @Test(testName = "Remove all the elements from the shopping cart")
     public void RemoveItemsFromCart() {
         // Generate 3 random indexes based on products amount and add them to the cart

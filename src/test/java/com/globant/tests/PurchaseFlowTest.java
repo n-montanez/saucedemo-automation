@@ -15,22 +15,36 @@ public class PurchaseFlowTest extends BaseTest {
 
     private ProductsPage productsPage;
 
+    /**
+     * Precondition: Log in and on products page
+     */
     @BeforeMethod
     public void loginUser() {
         productsPage = loginAndGetProductsPage();
     }
 
-    @Parameters({"baseUrl", "productsPath", "cartPath", "checkoutInfoPath", "checkoutOverviewPath", "checkoutCompletePath"})
+    /**
+     * Follow a complete purchase workflow:
+     * Adds a product to the cart
+     * Starts checkout
+     * Fills out checkout info
+     * Verifies checkout overview
+     * Completes the purchase
+     *
+     * @param firstName  provided user's first name
+     * @param lastName   provided user's last name
+     * @param postalCode provided user's location postal code
+     */
     @Test(testName = "Complete a purchase workflow", dataProviderClass = TestDataProvider.class, dataProvider = "user-info")
     public void PurchaseWorkflow(String firstName, String lastName, String postalCode) {
+        // Assert product's page URL
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + productsPath);
 
         // Select a random product and add it to the cart
         TestUtils.selectProducts(productsPage, 1);
 
-        Header header = new Header(productsPage.getDriver());
-
         // Assert that cart badge shows correct amount of items
+        Header header = new Header(productsPage.getDriver());
         Assert.assertEquals(header.getBadgeCart().getText(), "1");
 
         // Assert cart page content
