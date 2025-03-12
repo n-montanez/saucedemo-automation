@@ -50,7 +50,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>stc/test/resources/suite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
