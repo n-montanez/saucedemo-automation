@@ -14,14 +14,7 @@ public class PurchaseFlowTest extends BaseTest {
 
     @BeforeMethod
     public void loginUser() {
-        LoginPage loginPage = loadLoginPage();
-
-        // User is on login page
-        Assert.assertNotNull(loginPage.getLblLoginTitle());
-        softAssert.assertEquals(loginPage.getLblLoginTitle().getText(), "Swag Labs");
-
-        // Go to products page after login
-        productsPage = loginPage.standardLogin();
+        productsPage = loginAndGetProductsPage();
     }
 
     @Test(testName = "Complete a purchase workflow")
