@@ -2,6 +2,7 @@ package com.globant.tests;
 
 import com.globant.pages.*;
 import com.globant.utils.BaseTest;
+import com.globant.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,12 +20,8 @@ public class RemoveItemsFromCartTest extends BaseTest {
     @Test(testName = "Remove all the elements from the shopping cart")
     public void RemoveItemsFromCart() {
         // Generate 3 random indexes based on products amount and add them to the cart
-        List<Integer> selectedProducts = productsPage.selectRandomIndexes(3);
-        for (Integer i : selectedProducts) {
-            SingleProductPage singleProductPage = productsPage.selectProduct(i);
-            singleProductPage.addProductToCart();
-            productsPage = singleProductPage.returnToProducts();
-        }
+        TestUtils.selectProducts(productsPage, 3);
+
         Header header = new Header(productsPage.getDriver());
         CartPage cartPage = header.goToCart();
         cartPage.emptyCart();

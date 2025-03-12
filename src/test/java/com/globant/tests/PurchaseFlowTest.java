@@ -2,6 +2,7 @@ package com.globant.tests;
 
 import com.globant.pages.*;
 import com.globant.utils.BaseTest;
+import com.globant.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,13 +20,9 @@ public class PurchaseFlowTest extends BaseTest {
 
     @Test(testName = "Complete a purchase workflow")
     public void PurchaseWorkflow() {
-        // Generate 3 random indexes based on products amount and add them to the cart
-        List<Integer> selectedProducts = productsPage.selectRandomIndexes(3);
-        for (Integer i : selectedProducts) {
-            SingleProductPage singleProductPage = productsPage.selectProduct(i);
-            singleProductPage.addProductToCart();
-            productsPage = singleProductPage.returnToProducts();
-        }
+        // Select a random product and add it to the cart
+        TestUtils.selectProducts(productsPage, 1);
+
         Header header = new Header(productsPage.getDriver());
         CartPage cartPage = header.goToCart();
         CheckoutInfoPage checkoutInfoPage = cartPage.goToCheckout();
