@@ -22,4 +22,9 @@ public class CartPage extends BasePage {
 
     @FindBy(id = "continue-shopping")
     private WebElement btnContinueShopping;
+
+    public CheckoutInfoPage goToCheckout() {
+        btnCheckout.click();
+        return new CheckoutInfoPage(driver);
+    }
 }

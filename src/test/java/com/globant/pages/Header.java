@@ -17,4 +17,9 @@ public class Header extends BasePage {
 
     @FindBy(css = ".shopping_cart_link")
     private WebElement cartButton;
+
+    public CartPage goToCart() {
+        cartButton.click();
+        return new CartPage(this.driver);
+    }
 }

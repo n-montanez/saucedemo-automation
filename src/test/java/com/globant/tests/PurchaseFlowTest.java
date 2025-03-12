@@ -1,8 +1,6 @@
 package com.globant.tests;
 
-import com.globant.pages.LoginPage;
-import com.globant.pages.ProductsPage;
-import com.globant.pages.SingleProductPage;
+import com.globant.pages.*;
 import com.globant.utils.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -35,5 +33,17 @@ public class PurchaseFlowTest extends BaseTest {
             singleProductPage.addProductToCart();
             productsPage = singleProductPage.returnToProducts();
         }
+        Header header = new Header(productsPage.getDriver());
+        CartPage cartPage = header.goToCart();
+        CheckoutInfoPage checkoutInfoPage = cartPage.goToCheckout();
+        checkoutInfoPage.fillForm("Nicolas", "Montañez", "166661");
+        CheckoutOverviewPage checkoutOverviewPage = checkoutInfoPage.continueCheckout();
+
+        // Assert that product prices are added correctly
+        List<Double> prices = checkoutOverviewPage.getPriceInfo();
+        Assert.assertEquals(prices.get(0) + prices.get(1), prices.get(2));
+
+        CheckoutCompletePage checkoutCompletePage = checkoutOverviewPage.finishCheckout();
+        Assert.assertEquals(checkoutCompletePage.getLblCompletedOrder().getText(), "Thank you for your order!");
     }
 }
