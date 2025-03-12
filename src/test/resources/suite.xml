@@ -3,15 +3,21 @@
     <parameter name="baseUrl" value="https://www.saucedemo.com/"/>
     <parameter name="browser" value="firefox"/>
 
-<!--    <test name="Purchase">-->
-<!--        <classes>-->
-<!--            <class name="com.globant.tests.PurchaseFlowTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Purchase">
+        <classes>
+            <class name="com.globant.tests.PurchaseFlowTest"/>
+        </classes>
+    </test>
 
     <test name="Empty Cart">
         <classes>
             <class name="com.globant.tests.RemoveItemsFromCartTest"/>
+        </classes>
+    </test>
+
+    <test name="Logout">
+        <classes>
+            <class name="com.globant.tests.LogoutTest"/>
         </classes>
     </test>
 </suite>

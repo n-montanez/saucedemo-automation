@@ -22,4 +22,9 @@ public class Header extends BasePage {
         cartButton.click();
         return new CartPage(this.driver);
     }
+
+    public SidebarMenu openBurgerMenu() {
+        btnBurgerMenu.click();
+        return new SidebarMenu(driver);
+    }
 }
