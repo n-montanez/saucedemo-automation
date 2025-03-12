@@ -35,4 +35,8 @@ public class Header extends BasePage {
     public WebElement getBadgeCart() {
         return badgeCart;
     }
+
+    public WebElement getLblLogo() {
+        return lblLogo;
+    }
 }

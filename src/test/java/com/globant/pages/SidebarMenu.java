@@ -26,4 +26,8 @@ public class SidebarMenu extends BasePage {
         linkLogout.click();
         return new LoginPage(driver);
     }
+
+    public WebElement getLinkLogout() {
+        return linkLogout;
+    }
 }
